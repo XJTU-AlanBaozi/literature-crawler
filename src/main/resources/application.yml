@@ -1,0 +1,77 @@
+spring:
+  application:
+    name: literature-crawler
+  
+  # 数据库配置
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: 
+    
+  # JPA 配置
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        
+  # H2 数据库控制台配置
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+      
+  # Thymeleaf 模板引擎配置
+  thymeleaf:
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    prefix: classpath:/templates/
+    suffix: .html
+    
+  # 上传文件配置
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# 日志配置
+logging:
+  level:
+    com.alan.work: DEBUG
+    org.springframework.web: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+
+# WebDriver
+webdriver:
+  chrome:
+    driver:
+      path: /tmp/chromedriver
+      
+# 爬虫网站配置
+crawler:
+  pubmed:
+    base-url: https://pubmed.ncbi.nlm.nih.gov
+    timeout: 30000
+    retry-count: 3
+    delay-between-requests: 1000
+    
+# 服务地址
+server:
+  port: 8080
+  servlet:
+    context-path: /
+    
+# 应用配置
+app:
+  name: AI 文献爬虫
+  version: 1.0.0
+  author: Alan包子
